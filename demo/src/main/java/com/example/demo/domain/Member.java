@@ -48,12 +48,15 @@ public class Member extends BaseEntity{
     private MemberStatus status;
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    @Builder.Default
     private List<MemberMission> memberMissionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    @Builder.Default
     private List<MemberAgree> memberAgreeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Review> reviewList = new ArrayList<>();
     }
 

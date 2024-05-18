@@ -27,6 +27,7 @@ public class Mission extends BaseEntity {
     private LocalDate deadline;
 
 @OneToMany(mappedBy = "mission",cascade = CascadeType.ALL)
+@Builder.Default
 private List<MemberMission> memberMissionList= new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)

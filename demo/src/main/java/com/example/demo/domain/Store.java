@@ -27,6 +27,7 @@ public class Store extends BaseEntity {
     private Float score;
 
     @OneToMany(mappedBy = "store",cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Review> reviewList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -29,6 +29,7 @@ public class Review extends BaseEntity {
     private Member member;
 
     @OneToMany(mappedBy = "review",cascade = CascadeType.ALL)
+    @Builder.Default
     private List<ReviewImage> reviewImageList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
