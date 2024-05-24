@@ -18,15 +18,32 @@ public enum ErrorStatus implements BaseErrorCode {
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
 
 
-    // 멤버 관려 에러
+    // 멤버 관련 에러
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
-    NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
+    NAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "이름은 필수 입니다."),
+    EMAIL_NOT_EXIST(HttpStatus.BAD_REQUEST,"MEMBER4003","이메일은 필수 입니다."),
+
+    // 가게 관련 에러
+    STORE_NOT_EXIST(HttpStatus.BAD_REQUEST,"STORE4001","가게가 없습니다."),
+    STORENAME_NOT_EXIST(HttpStatus.BAD_REQUEST,"STORE4002","가게이름은 필수 입니다."),
+
+
+    // 미션 관련 에러
+    MISSION_NOT_EXIST(HttpStatus.BAD_REQUEST,"MISSION4001","미션이 없습니다."),
+    MISSION_IS_CHALLENGING(HttpStatus.BAD_REQUEST,"MISSION4002","해당 미션 이미 진행중."),
+
+    // 리뷰 관련 에러
+    REVIEW_NOT_EXIST(HttpStatus.BAD_REQUEST,"REVIEW4001","리뷰가 없습니다."),
+
+    // 지역 관련 에러
+    REGION_NOT_EXIST(HttpStatus.BAD_REQUEST,"REGION4001","지역이 없습니다."),
+
 
     // 예시,,,
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 
-    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST,"TEMP4001","이거는 테스트");
-
+    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST,"TEMP4001","이거는 테스트"),
+    FOOD_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND,"FOODTYPE4001", "음식 종류가 없습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

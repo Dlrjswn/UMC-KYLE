@@ -4,8 +4,12 @@ import com.example.demo.domain.enums.Gender;
 import com.example.demo.domain.enums.MemberStatus;
 import com.example.demo.domain.mapping.MemberAgree;
 import com.example.demo.domain.mapping.MemberMission;
+import com.example.demo.domain.mapping.MemberPrefer;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,6 +17,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -31,10 +37,12 @@ public class Member extends BaseEntity{
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false,length=20)
+    // @Column(nullable = false,length=20)
         private String email;
 
-    private Integer point;
+
+    @ColumnDefault("0")
+        private Integer point;
 
     @Column(nullable = false,length=20)
         private String phoneNum;
@@ -58,5 +66,9 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     @Builder.Default
     private List<Review> reviewList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<MemberPrefer> memberPreferList = new ArrayList<>();
     }
 
