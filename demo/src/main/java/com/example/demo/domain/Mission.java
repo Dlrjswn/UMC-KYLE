@@ -27,9 +27,18 @@ public class Mission extends BaseEntity {
     private LocalDate deadline;
 
 @OneToMany(mappedBy = "mission",cascade = CascadeType.ALL)
+@Builder.Default
 private List<MemberMission> memberMissionList= new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="store_id")
     private Store store;
+
+    public void setStore(Store store) {
+        if(this.store != null){
+            this.store.setMission(null);
+        }
+        this.store = store;
+        store.setMission(this);
+    }
 }
