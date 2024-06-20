@@ -1,6 +1,8 @@
 package com.example.demo.service.MissionService;
 
 import com.example.demo.apiPayload.code.status.ErrorStatus;
+import com.example.demo.apiPayload.exception.handler.MemberHandler;
+import com.example.demo.apiPayload.exception.handler.MissionHandler;
 import com.example.demo.apiPayload.exception.handler.StoreHandler;
 import com.example.demo.converter.MemberMissionConverter;
 import com.example.demo.converter.MissionConverter;
@@ -25,7 +27,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
 
     private final MissionRepository missionRepository;
     private final StoreRepository storeRepository;
-
+private final MemberRepository memberRepository;
 
 
     @Override
@@ -37,6 +39,23 @@ public class MissionCommandServiceImpl implements MissionCommandService {
 
         return missionRepository.save(newMission);
 
+    }
+
+    @Override
+    @Transactional
+    public Mission updateMissionStatus(Long memberId, Long missionId) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+        Mission mission = missionRepository.findById(missionId).orElseThrow(()->new MissionHandler(ErrorStatus.MISSION_NOT_EXIST));
+
+        member.getMemberMissionList().forEach(
+                memberMission -> {
+                    if (memberMission.getMission().getId() == missionId) {
+                        memberMission.changeStatusToComplete();
+                    }
+                }
+        );
+
+        return mission;
     }
 
 

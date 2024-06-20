@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberRequestDTO {
@@ -25,5 +26,26 @@ public class MemberRequestDTO {
         @ExistCategories
         List<Long> preferType;
 
+    }
+
+    @Getter
+    public static class ReviewDTO{
+        @NotNull
+        String content;
+
+        @NotNull
+        Float score;
+    }
+
+    @Getter
+    public static class MissionDTO{
+        @NotNull
+        String content;
+
+        @NotNull
+        Integer reward;
+
+        @NotNull
+        LocalDateTime deadline;
     }
 }

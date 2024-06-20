@@ -29,4 +29,10 @@ public class MissionConverter {
                 .updatedAt(LocalDateTime.now())
                 .build();
     }
+    public static MissionResponseDTO.UpdateMissionStatusDto updateMissionStatusDto(Mission mission) {
+        return MissionResponseDTO.UpdateMissionStatusDto.builder()
+                .missionId(mission.getId())
+                .updatedAt(mission.getUpdatedAt())
+                .build();
+    }
 }

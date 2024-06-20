@@ -3,6 +3,7 @@ package com.example.demo.service.MemberService;
 
 import com.example.demo.apiPayload.code.status.ErrorStatus;
 import com.example.demo.apiPayload.exception.handler.FoodTypeHandler;
+import com.example.demo.apiPayload.exception.handler.MemberHandler;
 import com.example.demo.converter.MemberConverter;
 import com.example.demo.converter.MemberPreferConverter;
 import com.example.demo.domain.FoodType;
@@ -45,4 +46,5 @@ public class MemberCommandSerivceImpl implements MemberCommandSerivce{
     public boolean foodType_existsById(Long id){
         return foodTypeRepository.existsById(id);
     }
+
 }

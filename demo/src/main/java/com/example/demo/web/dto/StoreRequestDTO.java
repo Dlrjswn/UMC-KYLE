@@ -16,4 +16,12 @@ public class StoreRequestDTO {
         Float score;
 
     }
+    @Getter
+    public static class ReviewDTO{
+        @NotNull
+        String content;
+
+        @NotNull
+        Float score;
+    }
 }
