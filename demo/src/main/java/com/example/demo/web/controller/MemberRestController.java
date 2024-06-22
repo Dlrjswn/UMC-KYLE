@@ -4,6 +4,7 @@ package com.example.demo.web.controller;
 import com.example.demo.apiPayload.ApiResponse;
 import com.example.demo.converter.MemberConverter;
 import com.example.demo.domain.Member;
+import com.example.demo.domain.Review;
 import com.example.demo.service.MemberService.MemberCommandSerivce;
 import com.example.demo.service.MemberService.MemberQueryService;
 import com.example.demo.validation.annotation.CheckPage;
@@ -20,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -49,8 +51,8 @@ public class MemberRestController {
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다.")
     })
     public ApiResponse<MemberResponseDTO.ReviewPreViewListDTO> getReviewList(@PathVariable(name = "memberId") Long memberId, @CheckPage @RequestParam(name="page") Integer page){
-        memberQueryService.getReviewList(memberId,page);
-        return null;
+        Page<Review> reviewList = memberQueryService.getReviewList(memberId, page);
+        return ApiResponse.onSuccess(MemberConverter.reviewPreViewListDTO(reviewList));
     }
 
     @GetMapping("{memberId}/missions")

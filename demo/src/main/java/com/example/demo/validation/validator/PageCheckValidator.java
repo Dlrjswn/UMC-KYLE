@@ -26,7 +26,7 @@ public class PageCheckValidator implements ConstraintValidator<CheckPage, Intege
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(ErrorStatus._BAD_REQUEST.toString()).addConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.PAGENUM_INVALID.toString()).addConstraintViolation();
         }
 
         return isValid;
